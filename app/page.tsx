@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-black font-sans text-white relative">
       <Navbar />
-      
+
       <main className="flex-1 w-full mx-auto flex flex-col items-center">
         <Hero />
         <Features />

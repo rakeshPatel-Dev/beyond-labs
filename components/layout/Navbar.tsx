@@ -1,30 +1,88 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import {
+  Code,
+  Layers,
+  Briefcase,
+  Rocket,
+  MessageSquare,
+  FileText,
+} from "lucide-react";
+import { Navbar1 } from "../shadcnblocks-com-navbar1";
 
-export function Navbar() {
-  return (
-    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-10 py-6 backdrop-blur-md bg-black/60 border-b border-white/5">
-      <div className="flex items-center gap-2">
-        <Link href="/" className="flex items-center gap-2">
-          <Image loading='eager' src="/logo/logo dark.svg" alt="Beyond Labs" width={140} height={36} className="h-15 w-auto" />
-        </Link>
-      </div>
+const demoData = {
+  logo: {
+    url: "/",
+    src: "/logo/logo dark.svg",
+    alt: "Beyond Labs Logo",
+  },
 
-      <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
-        <Link href="#features" className="hover:text-white transition-colors">Services</Link>
-        <Link href="#solutions" className="hover:text-white transition-colors">Solutions</Link>
-        <Link href="#about" className="hover:text-white transition-colors">About</Link>
-        <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
-      </nav>
+  menu: [
+    {
+      title: "About",
+      url: "/about",
+    },
+    {
+      title: "Services",
+      url: "#",
+      items: [
+        {
+          title: "Web Development",
+          description: "High-performance websites built for scale and speed",
+          icon: <Code className="size-5 shrink-0" />,
+          url: "/services/web-development",
+        },
+        {
+          title: "UI/UX Design",
+          description: "Clean, modern, and conversion-focused interfaces",
+          icon: <Layers className="size-5 shrink-0" />,
+          url: "/services/ui-ux",
+        },
+        {
+          title: "Custom Software",
+          description: "Tailored systems to solve complex business problems",
+          icon: <Briefcase className="size-5 shrink-0" />,
+          url: "/services/software",
+        },
+        {
+          title: "Startup MVP",
+          description: "Launch your idea fast with scalable architecture",
+          icon: <Rocket className="size-5 shrink-0" />,
+          url: "/services/mvp",
+        },
+      ],
+    },
 
-      <div className="flex items-center gap-4">
-        <Link href="#contact" className="hidden md:block text-sm font-medium text-zinc-300 hover:text-white transition-colors">
-          Contact
-        </Link>
-        <Link href="#get-started" className="text-sm font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-zinc-200 transition-colors">
-          Get Started
-        </Link>
-      </div>
-    </header>
-  );
+    {
+      title: "Work",
+      url: "/projects",
+    },
+
+
+
+    {
+      title: "Insights",
+      url: "/blog",
+    },
+
+    {
+      title: "Contact",
+      url: "/contact",
+    },
+  ],
+
+  mobileExtraLinks: [
+    { name: "Careers", url: "/careers" },
+    { name: "Privacy Policy", url: "/privacy" },
+    { name: "Terms", url: "/terms" },
+  ],
+
+  auth: {
+    login: { text: "Get Started", url: "/contact" },
+    signup: { text: "Book a Call", url: "/contact" },
+  },
+};
+
+function Navbar() {
+  return <Navbar1 {...demoData} />;
 }
+
+export { Navbar };

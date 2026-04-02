@@ -1,57 +1,122 @@
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+
+const footerData = {
+  brand: {
+    logo: "/logo/logo dark.svg",
+    description:
+      "We build scalable, high-performance digital products for startups and businesses ready to move beyond limitations.",
+    cta: {
+      text: "Start a Project →",
+      url: "/contact",
+    },
+  },
+
+  sections: [
+    {
+      title: "Services",
+      links: [
+        { name: "Web Development", url: "/services/web-development" },
+        { name: "UI/UX Design", url: "/services/ui-ux" },
+        { name: "Custom Software", url: "/services/software" },
+        { name: "MVP Development", url: "/services/mvp" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { name: "About Us", url: "/about" },
+        { name: "Case Studies", url: "/projects" },
+        { name: "Insights", url: "/blog" },
+        { name: "Careers", url: "/careers" },
+        { name: "Contact", url: "/contact" },
+      ],
+    },
+    {
+      title: "Connect",
+      links: [
+        { name: "hello@beyondlabs.dev", url: "mailto:hello@beyondlabs.dev" },
+        { name: "LinkedIn", url: "#" },
+        { name: "GitHub", url: "#" },
+        { name: "Twitter / X", url: "#" },
+      ],
+    },
+  ],
+
+  bottom: {
+    copyright: "Beyond Labs. All rights reserved.",
+    legal: [
+      { name: "Privacy", url: "/privacy" },
+      { name: "Terms", url: "/terms" },
+    ],
+  },
+};
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black pt-16 pb-8 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#0168FD]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
-      
+    <footer className="border-t border-white/10 bg-black pt-20 pb-10 relative overflow-hidden">
+
+      {/* Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-[#0A84FF]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="col-span-1 md:col-span-1">
+
+        {/* Brand */}
+        <div>
           <Link href="/" className="inline-block mb-6">
-            <Image src="/logo/logo light.svg" alt="Beyond Labs" width={140} height={36} className="h-8 w-auto" />
+            <Image
+              src={footerData.brand.logo}
+              alt="Beyond Labs"
+              width={140}
+              height={40}
+              className="h-12 w-auto"
+            />
           </Link>
-          <p className="text-zinc-400 text-sm mb-6 max-w-xs">
-            Deliver Digital Products Faster And Seamlessly. Engineering excellence for modern businesses.
+
+          <p className="text-zinc-400 text-sm leading-relaxed mb-6 max-w-xs">
+            {footerData.brand.description}
           </p>
+
+          <Link
+            href={footerData.brand.cta.url}
+            className="inline-block text-sm font-medium text-white bg-white/10 px-4 py-2 rounded-md hover:bg-white/20 transition"
+          >
+            {footerData.brand.cta.text}
+          </Link>
         </div>
 
-        <div>
-          <h4 className="font-semibold text-white mb-6">Resources</h4>
-          <ul className="space-y-4">
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Docs</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Community</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Pricing</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Changelog</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-semibold text-white mb-6">Company</h4>
-          <ul className="space-y-4">
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Blog</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">LinkedIn</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Contact</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-semibold text-white mb-6">Legal</h4>
-          <ul className="space-y-4">
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Privacy Policy</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Terms of Service</Link></li>
-            <li><Link href="#" className="text-sm text-zinc-400 hover:text-[#0168FD] transition-colors">Partnership</Link></li>
-          </ul>
-        </div>
+        {/* Dynamic Sections */}
+        {footerData.sections.map((section) => (
+          <div key={section.title}>
+            <h4 className="font-semibold text-white mb-6">
+              {section.title}
+            </h4>
+            <ul className="flex flex-col items-start flex-wrap space-y-4">
+              {section.links.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.url} className="footer-link">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
+      {/* Bottom */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-zinc-500">
-          Copyright © {new Date().getFullYear()} Beyond Labs. All rights reserved.
+          © {new Date().getFullYear()} {footerData.bottom.copyright}
         </p>
-        <div className="flex items-center gap-4 text-zinc-500">
-          <Link href="#" className="hover:text-white transition-colors">Twitter</Link>
-          <Link href="#" className="hover:text-white transition-colors">GitHub</Link>
+
+        <div className="flex items-center gap-6">
+          {footerData.bottom.legal.map((item) => (
+            <Link key={item.name} href={item.url} className="footer-link text-sm">
+              {item.name}
+            </Link>
+          ))}
         </div>
       </div>
     </footer>

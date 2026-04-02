@@ -17,7 +17,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
+    <section className="relative w-full pt-10 pb-20 md:pt-20 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
       {/* Glowing Dome Background */}
       <div className="absolute inset-x-0 top-0 h-300 z-0 pointer-events-none flex justify-center mt-[-20%] md:mt-[-10%]">
         {/* The Grid inside the Dome */}
